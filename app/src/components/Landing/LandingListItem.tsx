@@ -1,3 +1,1 @@
-export const LandingListItem = () => {
-  
-}
+export const LandingListItem = () => {};
