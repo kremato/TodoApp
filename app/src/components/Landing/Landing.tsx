@@ -1,13 +1,15 @@
-import { useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
-
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Stack } from "@mui/material";
+
 import { fetchCatalogueData } from "../../store/catalogue-actions";
 import { ICatalogueState } from "../../types/types";
-import { Link } from "react-router-dom";
+import { LandingList } from "./LadingList";
+import { AddNewTodoList } from "./AddNewTodoList";
 
 export const Landing = () => {
   const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
   const catalogue = useSelector((state: ICatalogueState) => {
     return state.catalogue;
   });
@@ -18,14 +20,18 @@ export const Landing = () => {
 
   return (
     <>
-      <div>TODO LIST CATALOGUE</div>
-      {catalogue.items.map((item) => {
-        return (
-          <Link to={`/catalogue/${item.id}`} key={uuidv4()}>
-            <div>{item.name}</div>
-          </Link>
-        );
-      })}
+      <Stack
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+        spacing={2}
+        width="100%"
+        height="100%"
+      >
+        <h1>TODO LIST CATALOGUE</h1>
+        <LandingList items={catalogue.items} />
+        <AddNewTodoList />
+      </Stack>
     </>
   );
 };
