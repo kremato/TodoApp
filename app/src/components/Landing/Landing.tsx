@@ -3,12 +3,12 @@ import { v4 as uuidv4 } from "uuid";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCatalogueData } from "../../store/catalogue-actions";
-import { IState } from "../../types/types";
+import { ICatalogueState } from "../../types/types";
 import { Link } from "react-router-dom";
 
 export const Landing = () => {
   const dispatch = useDispatch();
-  const catalogue = useSelector((state: IState) => {
+  const catalogue = useSelector((state: ICatalogueState) => {
     return state.catalogue;
   });
 
