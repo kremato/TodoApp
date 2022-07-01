@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Stack } from "@mui/material";
 
@@ -19,18 +19,9 @@ export const Landing = () => {
 
   return (
     <>
-      <Stack
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-        spacing={2}
-        width="100%"
-        height="100%"
-      >
-        <h1>TODO LIST CATALOGUE</h1>
-        <LandingList />
-        <AddNewTodoList />
-      </Stack>
+      <h1>TODO LIST CATALOGUE</h1>
+      <LandingList />
+      <AddNewTodoList />
     </>
   );
 };

@@ -8,6 +8,8 @@ export interface ITodoItem {
   catalogueId: string;
   createdAt: Date;
   content: string;
+  title: string;
+  deadline: Date;
 }
 
 export interface ICatalogueState {
