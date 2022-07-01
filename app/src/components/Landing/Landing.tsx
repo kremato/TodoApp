@@ -9,7 +9,6 @@ import { AddNewTodoList } from "./AddNewTodoList";
 
 export const Landing = () => {
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(false);
   const catalogue = useSelector((state: ICatalogueState) => {
     return state.catalogue;
   });
@@ -29,7 +28,7 @@ export const Landing = () => {
         height="100%"
       >
         <h1>TODO LIST CATALOGUE</h1>
-        <LandingList items={catalogue.items} />
+        <LandingList />
         <AddNewTodoList />
       </Stack>
     </>

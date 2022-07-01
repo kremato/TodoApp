@@ -12,14 +12,16 @@ import {
   DialogContentText,
   DialogTitle,
   TextField,
-  Typography,
 } from "@mui/material";
+import { updateCatalogueData } from "../../store/catalogue-actions";
+import { useDispatch } from "react-redux";
 
 const schema = yup.object({
   title: yup.string().required(),
 });
 
 export const AddNewTodoList = () => {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const {
     register,
@@ -30,6 +32,7 @@ export const AddNewTodoList = () => {
   });
 
   const onSubmit = (data: any) => {
+    dispatch(updateCatalogueData(data.title) as any);
     setOpen(false);
   };
 

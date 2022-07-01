@@ -9,6 +9,9 @@ const catalogueSlice = createSlice({
     replaceCatalogue(state, action) {
       state.items = action.payload.items;
     },
+    addCatalogueItem(state, action) {
+      state.items = state.items.concat(action.payload);
+    },
   },
 });
 
