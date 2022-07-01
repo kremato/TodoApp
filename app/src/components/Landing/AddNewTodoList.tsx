@@ -15,11 +15,9 @@ import {
   Typography,
 } from "@mui/material";
 
-const schema = yup
-  .object({
-    title: yup.string().required(),
-  })
-  .required();
+const schema = yup.object({
+  title: yup.string().required(),
+});
 
 export const AddNewTodoList = () => {
   const [open, setOpen] = useState(false);
@@ -31,17 +29,15 @@ export const AddNewTodoList = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: any) => {console.log('form data'); console.log(data)};
+  const onSubmit = (data: any) => {
+    setOpen(false);
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = (addNew = false) => {
-    if (addNew) {
-      console.log('add new')
-      return handleSubmit(onSubmit);
-    }
+  const handleClose = () => {
     setOpen(false);
   };
 
@@ -54,30 +50,32 @@ export const AddNewTodoList = () => {
       >
         <AddCircleIcon fontSize="inherit" />
       </IconButton>
-      <Dialog open={open} onClose={() => handleClose()}>
-        <DialogTitle>Add new TODO list</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To add new todo list, please enter list title here.
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="New list title"
-            type="text"
-            fullWidth
-            variant="standard"
-            {...register("title")}
-            error={errors.title ? true : false}
-            helperText="Incorrect entry."
-          />
-          {errors.title && <p>{errors.title.message}</p>}
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => handleClose()}>Cancel</Button>
-          <Button onClick={() => handleClose(true)}>Add new list</Button>
-        </DialogActions>
+      <Dialog open={open} onClose={handleClose}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <DialogTitle>Add new TODO list</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              To add new todo list, please enter list title here.
+            </DialogContentText>
+            <TextField
+              margin="dense"
+              id="title"
+              label="New list title"
+              type="text"
+              fullWidth
+              variant="standard"
+              error={errors.title ? true : false}
+              helperText={errors.title && `${errors.title.message?.toString()}`}
+              {...register("title")}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={() => handleSubmit(onSubmit)} type="submit">
+              Add new list
+            </Button>
+          </DialogActions>
+        </form>
       </Dialog>
     </div>
   );
