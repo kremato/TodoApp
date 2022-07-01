@@ -30,12 +30,7 @@ export const fetchTodosData = (id: string) => {
   };
 };
 
-interface IDeleteTodoItem {
-  catalogueId: string;
-  todoId: string;
-}
-
-export const deleleTodoItem = (catalogueId: string, todoId:string) => {
+export const deleleTodoItem = (catalogueId: string, todoId: string) => {
   return async (dispatch: any) => {
     const deleteTodoData = async () => {
       const response = await fetch(
@@ -61,6 +56,46 @@ export const deleleTodoItem = (catalogueId: string, todoId:string) => {
       );
     } catch (error) {
       console.log("Error ocuured when removing todo item from todo list");
+    }
+  };
+};
+
+export const updateTodoItem = (
+  catalogueId: string,
+  todoId: string,
+  completed: boolean
+) => {
+  return async (dispatch: any) => {
+    const updateTodoData = async () => {
+      const response = await fetch(
+        `${import.meta.env.VITE_API}/catalogue/${catalogueId}/todos/${todoId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            completed,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(
+          `Could not update catalogue/${catalogueId}/todos/${todoId} data!`
+        );
+      }
+    };
+
+    try {
+      await updateTodoData();
+      dispatch(
+        todosActions.updateTodo({
+          todoId,
+        })
+      );
+    } catch (error) {
+      console.log("Error ocuured when updating todo item in todo list");
     }
   };
 };

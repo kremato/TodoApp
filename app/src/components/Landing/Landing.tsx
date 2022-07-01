@@ -9,9 +9,6 @@ import { AddNewTodoList } from "./AddNewTodoList";
 
 export const Landing = () => {
   const dispatch = useDispatch();
-  const catalogue = useSelector((state: ICatalogueState) => {
-    return state.catalogue;
-  });
 
   useEffect(() => {
     dispatch(fetchCatalogueData() as any);

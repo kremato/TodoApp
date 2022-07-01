@@ -10,6 +10,7 @@ export interface ITodoItem {
   content: string;
   title: string;
   deadline: Date;
+  completed: boolean;
 }
 
 export interface ICatalogueState {
