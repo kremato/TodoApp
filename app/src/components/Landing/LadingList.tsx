@@ -11,7 +11,10 @@ export const LandingList = () => {
   );
 
   return (
-    <List sx={{ width: "50%" }} aria-label="Todo lists catalogue">
+    <List
+      sx={{ width: "50%", maxHeight: "70%", overflow: "auto" }}
+      aria-label="Todo lists catalogue"
+    >
       {todoLists.map((item) => {
         return <LandingListItem key={uuidv4()} {...item} />;
       })}

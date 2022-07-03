@@ -6,10 +6,10 @@ export interface ICatalogoueItem {
 export interface ITodoItem {
   id: string;
   catalogueId: string;
-  createdAt: Date;
+  createdAt: number;
   content: string;
   title: string;
-  deadline: Date;
+  deadline: number;
   completed: boolean;
 }
 

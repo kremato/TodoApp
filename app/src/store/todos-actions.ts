@@ -99,3 +99,50 @@ export const updateTodoItem = (
     }
   };
 };
+
+export const addNewTodoItem = (
+  catalogueId: string,
+  title: string,
+  content: string,
+  deadline: Date
+) => {
+  return async (dispatch: any) => {
+    const sendRequest = async () => {
+      const response = await fetch(
+        `${import.meta.env.VITE_API}/catalogue/${catalogueId}/todos`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title,
+            content,
+            deadline: deadline.getTime(),
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(
+          `Could not add new item to catalogue/${catalogueId}/todos data!`
+        );
+      }
+
+      return response;
+    };
+
+    try {
+      const response = await sendRequest();
+      const data = await response.json();
+      console.log("Dispatch todo action");
+      dispatch(
+        todosActions.addNewTodo({
+          data,
+        })
+      );
+    } catch (error) {
+      console.log("Error occured when adding new item to todo list");
+    }
+  };
+};

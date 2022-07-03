@@ -1,9 +1,8 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Stack } from "@mui/material";
+import { useDispatch } from "react-redux";
 
 import { fetchCatalogueData } from "../../store/catalogue-actions";
-import { ICatalogueState } from "../../types/types";
+import { todosActions } from "../../store/todos-slice";
 import { LandingList } from "./LadingList";
 import { AddNewTodoList } from "./AddNewTodoList";
 
@@ -12,6 +11,7 @@ export const Landing = () => {
 
   useEffect(() => {
     dispatch(fetchCatalogueData() as any);
+    dispatch(todosActions.replaceTodos({ items: [] }) as any);
   }, [dispatch]);
 
   return (

@@ -45,7 +45,7 @@ export const AddNewTodoList = () => {
   };
 
   return (
-    <div>
+    <>
       <IconButton
         aria-label="add new todo list"
         size="large"
@@ -80,6 +80,6 @@ export const AddNewTodoList = () => {
           </DialogActions>
         </form>
       </Dialog>
-    </div>
+    </>
   );
 };

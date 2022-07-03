@@ -8,11 +8,9 @@ export const LandingListItem = ({ id, name }: ICatalogoueItem) => {
     <>
       <Divider />
       <Link to={`/catalogue/${id}`} key={uuidv4()}>
-      <ListItem button>
-        
+        <ListItem button>
           <ListItemText primary={name} />
-        
-      </ListItem>
+        </ListItem>
       </Link>
       <Divider />
     </>

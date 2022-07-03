@@ -49,8 +49,8 @@ export const updateCatalogueData = (name: string) => {
 
     try {
       const response = await sendRequest();
-      const data = await response.json()
-      dispatch(catalogueActions.addCatalogueItem(data))
+      const data = await response.json();
+      dispatch(catalogueActions.addCatalogueItem(data));
     } catch (error) {
       console.log("Error occured during todo list creation");
     }

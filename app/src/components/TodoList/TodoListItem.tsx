@@ -28,8 +28,10 @@ export const TodoListItem = (props: ITodoListItemProps) => {
   };
 
   const handleUpdate = () => {
-    dispatch(updateTodoItem(props.catalogueId, todoItem.id, !todoItem.completed) as any);
-  }
+    dispatch(
+      updateTodoItem(props.catalogueId, todoItem.id, !todoItem.completed) as any
+    );
+  };
 
   return (
     <>
@@ -54,7 +56,11 @@ export const TodoListItem = (props: ITodoListItemProps) => {
           <IconButton aria-label="delte todo item" onClick={handleDelete}>
             <ClearIcon />
           </IconButton>
-          <Checkbox {...label} checked={todoItem.completed} onClick={handleUpdate}/>
+          <Checkbox
+            {...label}
+            checked={todoItem.completed}
+            onClick={handleUpdate}
+          />
         </Stack>
       </ListItem>
       <Divider />

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { object } from "yup";
 import { ITodoItem } from "../types/types";
 
 const todosSlice = createSlice({
@@ -23,6 +22,9 @@ const todosSlice = createSlice({
         }
         return object;
       }) as never[];
+    },
+    addNewTodo(state, action) {
+      state.items = state.items.concat(action.payload.data);
     },
   },
 });
