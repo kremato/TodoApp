@@ -2,16 +2,15 @@ import {
   Divider,
   IconButton,
   ListItem,
-  ListItemText,
   Checkbox,
   Typography,
   Stack,
 } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
-import { Fragment } from "react";
 import { ITodoItem } from "../../types/types";
 import { deleleTodoItem, updateTodoItem } from "../../store/todos-actions";
 import { useDispatch } from "react-redux";
+import { format } from "date-fns";
 
 interface ITodoListItemProps {
   todoItem: ITodoItem;
@@ -36,24 +35,16 @@ export const TodoListItem = (props: ITodoListItemProps) => {
   return (
     <>
       <Divider />
-      <ListItem alignItems="flex-start">
-        <ListItemText
-          primary={todoItem.title}
-          secondary={
-            <Fragment>
-              <Typography
-                sx={{ display: "inline" }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-                {todoItem.content}
-              </Typography>
-            </Fragment>
-          }
-        />
-        <Stack direction="column">
-          <IconButton aria-label="delte todo item" onClick={handleDelete}>
+      <ListItem className="list-item">
+        <Stack sx={{ width: "90%" }}>
+          <Typography>{props.todoItem.title}</Typography>
+          <Typography>
+            {format(new Date(props.todoItem.deadline), "dd/MM/yyyy")}
+          </Typography>
+          <Typography>{props.todoItem.content}</Typography>
+        </Stack>
+        <Stack>
+          <IconButton aria-label="delete todo item" onClick={handleDelete}>
             <ClearIcon />
           </IconButton>
           <Checkbox

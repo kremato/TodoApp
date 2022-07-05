@@ -17,6 +17,14 @@ export interface ICatalogueState {
   catalogue: { items: ICatalogoueItem[] };
 }
 
-export interface ITodosState {
+export interface IState {
+  catalogue: { items: ICatalogoueItem[] };
   todos: { items: ITodoItem[] };
+  filter: { visibility: Visibility };
+}
+
+export enum Visibility {
+  All = "All",
+  Active = "Active",
+  Completed = "Completed",
 }

@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { fetchTodosData } from "../../store/todos-actions";
-import { ITodosState } from "../../types/types";
+import { IState, Visibility } from "../../types/types";
 import { AddNewTodoLItem } from "./AddNewTodoItem";
+import { Filter } from "./Filter";
 import { TodoListItem } from "./TodoListItem";
 
 export const TodoList = () => {
@@ -15,7 +16,23 @@ export const TodoList = () => {
     return <div>Could not load id</div>;
   }
   const dispatch = useDispatch();
-  const todosList = useSelector((state: ITodosState) => {
+
+  const visibility = useSelector((state: IState) => {
+    return state.filter.visibility;
+  });
+
+  const todosList = useSelector((state: IState) => {
+    const now = new Date().getTime();
+    if (visibility === Visibility.Completed) {
+      return state.todos.items.filter((item) => item.completed);
+    }
+
+    if (visibility === Visibility.Active) {
+      return state.todos.items.filter(
+        (item) => !item.completed && item.deadline >= now
+      );
+    }
+
     return state.todos.items;
   });
 
@@ -26,6 +43,7 @@ export const TodoList = () => {
   return (
     <>
       <h1>TODO LIST</h1>
+      <Filter />
       <List
         sx={{ width: "50%", maxHeight: "70%", overflow: "auto" }}
         aria-label="Todo list"
