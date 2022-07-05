@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import catalogueSlice from "./catalogue-slice";
 import filterSlice from "./filter-slice";
+import searchSlice from "./search-slice";
 import todosSlice from "./todos-slice";
 
 const store = configureStore({
@@ -9,6 +10,7 @@ const store = configureStore({
     catalogue: catalogueSlice.reducer,
     todos: todosSlice.reducer,
     filter: filterSlice.reducer,
+    search: searchSlice.reducer,
   },
 });
 

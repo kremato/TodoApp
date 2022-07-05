@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 
 import { fetchCatalogueData } from "../../store/catalogue-actions";
 import { todosActions } from "../../store/todos-slice";
+import { searchActions } from "../../store/search-slice";
 import { LandingList } from "./LadingList";
 import { AddNewTodoList } from "./AddNewTodoList";
 
@@ -12,6 +13,7 @@ export const Landing = () => {
   useEffect(() => {
     dispatch(fetchCatalogueData() as any);
     dispatch(todosActions.replaceTodos({ items: [] }) as any);
+    dispatch(searchActions.replaceSearchString({ search: "" }) as any);
   }, [dispatch]);
 
   return (

@@ -21,6 +21,7 @@ export interface IState {
   catalogue: { items: ICatalogoueItem[] };
   todos: { items: ITodoItem[] };
   filter: { visibility: Visibility };
+  search: { search: string };
 }
 
 export enum Visibility {

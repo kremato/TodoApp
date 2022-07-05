@@ -7,6 +7,7 @@ import { fetchTodosData } from "../../store/todos-actions";
 import { IState, Visibility } from "../../types/types";
 import { AddNewTodoLItem } from "./AddNewTodoItem";
 import { Filter } from "./Filter";
+import { Search } from "./Search";
 import { TodoListItem } from "./TodoListItem";
 
 export const TodoList = () => {
@@ -23,17 +24,21 @@ export const TodoList = () => {
 
   const todosList = useSelector((state: IState) => {
     const now = new Date().getTime();
+    const items = state.todos.items.filter(
+      (item) =>
+        item.content.includes(state.search.search) ||
+        item.title.includes(state.search.search)
+    );
+
     if (visibility === Visibility.Completed) {
-      return state.todos.items.filter((item) => item.completed);
+      return items.filter((item) => item.completed);
     }
 
     if (visibility === Visibility.Active) {
-      return state.todos.items.filter(
-        (item) => !item.completed && item.deadline >= now
-      );
+      return items.filter((item) => !item.completed && item.deadline >= now);
     }
 
-    return state.todos.items;
+    return items;
   });
 
   useEffect(() => {
@@ -44,6 +49,7 @@ export const TodoList = () => {
     <>
       <h1>TODO LIST</h1>
       <Filter />
+      <Search />
       <List
         sx={{ width: "50%", maxHeight: "70%", overflow: "auto" }}
         aria-label="Todo list"
