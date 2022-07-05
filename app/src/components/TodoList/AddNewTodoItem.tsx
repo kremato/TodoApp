@@ -2,7 +2,6 @@ import IconButton from "@mui/material/IconButton";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -19,17 +18,18 @@ import {
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { addNewTodoItem } from "../../store/todos-actions";
+import { DateTimePicker } from "@mui/x-date-pickers";
 
 const today = new Date();
-const yesterday = new Date(today.getTime() - 24 * 60 * 60 * 1000);
-
+/* const yesterday = new Date(today.getTime() - 24 * 60 * 60 * 1000);
+ */
 const schema = yup.object({
   title: yup.string().required(),
   content: yup.string().required(),
   deadline: yup
     .date()
     .default(today)
-    .min(yesterday, "Date for new todo cannot be in the past")
+    .min(today, "Date for new todo cannot be in the past")
     .required(),
 });
 
@@ -115,7 +115,7 @@ export const AddNewTodoLItem = ({ catalogueId }: INewTodoItemProps) => {
                   name="deadline"
                   render={({ field: { onChange }, formState }) => (
                     <>
-                      <DesktopDatePicker
+                      <DateTimePicker
                         label="Deadline"
                         inputFormat="dd/MM/yyyy"
                         value={date}
