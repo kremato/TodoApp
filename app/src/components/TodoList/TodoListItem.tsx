@@ -54,7 +54,6 @@ export const TodoListItem = (props: ITodoListItemProps) => {
           />
         </Stack>
       </ListItem>
-      <Divider />
     </>
   );
 };

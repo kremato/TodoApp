@@ -20,16 +20,15 @@ import { useDispatch } from "react-redux";
 import { addNewTodoItem } from "../../store/todos-actions";
 import { DateTimePicker } from "@mui/x-date-pickers";
 
-const today = new Date();
-/* const yesterday = new Date(today.getTime() - 24 * 60 * 60 * 1000);
- */
+const now = new Date();
+
 const schema = yup.object({
   title: yup.string().required(),
   content: yup.string().required(),
   deadline: yup
     .date()
-    .default(today)
-    .min(today, "Date for new todo cannot be in the past")
+    .default(now)
+    .min(now, "Date for new todo cannot be in the past")
     .required(),
 });
 
@@ -40,7 +39,7 @@ interface INewTodoItemProps {
 export const AddNewTodoLItem = ({ catalogueId }: INewTodoItemProps) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const [date, setDate] = useState<Date | null>(today);
+  const [date, setDate] = useState<Date | null>(now);
   const {
     register,
     handleSubmit,

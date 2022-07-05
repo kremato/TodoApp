@@ -16,7 +16,6 @@ export const LandingListItem = ({ id, name }: ICatalogoueItem) => {
           <ListItemText primary={name} />
         </ListItem>
       </Link>
-      <Divider />
     </>
   );
 };

@@ -135,7 +135,6 @@ export const addNewTodoItem = (
     try {
       const response = await sendRequest();
       const data = await response.json();
-      console.log("Dispatch todo action");
       dispatch(
         todosActions.addNewTodo({
           data,
