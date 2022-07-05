@@ -117,7 +117,7 @@ export const AddNewTodoLItem = ({ catalogueId }: INewTodoItemProps) => {
                     <>
                       <DesktopDatePicker
                         label="Deadline"
-                        inputFormat="MM/dd/yyyy"
+                        inputFormat="dd/MM/yyyy"
                         value={date}
                         onChange={(newValue) => {
                           setDate(newValue);
