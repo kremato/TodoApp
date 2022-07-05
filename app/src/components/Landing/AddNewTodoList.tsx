@@ -17,7 +17,10 @@ import { updateCatalogueData } from "../../store/catalogue-actions";
 import { useDispatch } from "react-redux";
 
 const schema = yup.object({
-  title: yup.string().required(),
+  title: yup
+    .string()
+    .max(25)
+    .required(),
 });
 
 export const AddNewTodoList = () => {

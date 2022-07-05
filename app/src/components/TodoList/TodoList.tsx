@@ -22,14 +22,14 @@ export const TodoList = () => {
   });
 
   const todosList = useSelector((state: IState) => {
-    const begginignOfToday = new Date().setHours(0, 0, 0, 0);
+    const now = new Date().getTime();
     if (visibility === Visibility.Completed) {
       return state.todos.items.filter((item) => item.completed);
     }
 
     if (visibility === Visibility.Active) {
       return state.todos.items.filter(
-        (item) => !item.completed && item.deadline >= begginignOfToday
+        (item) => !item.completed && item.deadline >= now
       );
     }
 
