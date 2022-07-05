@@ -7,7 +7,11 @@ export const LandingListItem = ({ id, name }: ICatalogoueItem) => {
   return (
     <>
       <Divider />
-      <Link to={`/catalogue/${id}`} key={uuidv4()}>
+      <Link
+        to={`/catalogue/${id}`}
+        style={{ textDecoration: "none", color: "inherit" }}
+        key={uuidv4()}
+      >
         <ListItem button>
           <ListItemText primary={name} />
         </ListItem>
