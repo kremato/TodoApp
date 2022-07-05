@@ -38,7 +38,7 @@ export const TodoListItem = (props: ITodoListItemProps) => {
       <ListItem className="list-item">
         <Stack sx={{ width: "90%" }}>
           <Typography>{props.todoItem.title}</Typography>
-          <Typography>
+          <Typography variant="poster">
             {format(new Date(props.todoItem.deadline), "dd/MM/yyyy")}
           </Typography>
           <Typography>{props.todoItem.content}</Typography>
